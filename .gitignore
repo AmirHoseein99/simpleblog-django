@@ -2,7 +2,7 @@
 mainApp/migrations/* 
 mainApp/__pycache__/*
 simpleblog/__pycache__/*
-
+simpleblog/__pycache__/settings.cpython-38.pyc
 
 
 
