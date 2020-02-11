@@ -1,1 +1,8 @@
 .vscode/*
+mainApp/migrations/* 
+mainApp/__pycache__/*
+simpleblog/__pycache__/*
+
+
+
+
