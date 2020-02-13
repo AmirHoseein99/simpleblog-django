@@ -1,3 +1,7 @@
+.time {
+  text-align: right;
+  margin: auto;
+}
 .content-section {
   background: #ffffff;
   padding: 10px 20px;

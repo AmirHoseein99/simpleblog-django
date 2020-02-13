@@ -4,16 +4,17 @@ from .models import Post
 # Create your views here.
 
 
-def mainPage(request):
+def main_page(request):
     context = {
         'posts': Post.objects.all()
     }
     return render(request, 'mainApp/mainPage.html', context)
 
 
-def aboutPage(request):
+def about_page(request):
     return render(request, 'mainApp/aboutPage.html', {'title': 'About'})
 
 
-def postPage(request):
-    return HttpResponse("<p> post page </p>")
+def post_detail_page(request, post):
+    post = get_object_or_404(Post, slug=post)
+    return render(request, 'mainApp/postdetailPage.html', {'post': post})
