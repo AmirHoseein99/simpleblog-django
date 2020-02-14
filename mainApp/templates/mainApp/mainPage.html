@@ -19,7 +19,7 @@
   </div>
   <!-- {% with comments.count as total_comments %} -->
   <p class="text-muted">
-    {{ post.comments.count}} comments
+    {{ post.comments.count}} comment {{ post.comments.count|pluralize }}
   </p>
   <!-- {% endwith %} -->
 </article>

@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import Post, Comment
+
+from .models import Post
 from .forms import CommentForm
+from django.contrib import messages
 # Create your views here.
 
 
@@ -26,6 +27,7 @@ def post_detail_page(request, post):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            messages.success(request, 'comment posted successfuly')
             return redirect(request.path)
     else:
         comment_form = CommentForm()
