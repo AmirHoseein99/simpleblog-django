@@ -6,15 +6,21 @@
     <div class="article-metadata">
       <a class="article-author" href="#">{{ post.author }}</a>
     </div>
-    <h2>
+    <h3>
       <a class="article-title" href="{{ post.get_absolute_url }}"
         >{{ post.title }}</a
       >
-    </h2>
+    </h3>
     <p class="article-content">
       {{ post.content}}
     </p>
+    <hr />
     <small class="text-muted">{{ post.date_of_creation|timesince }} Ago </small>
   </div>
+  <!-- {% with comments.count as total_comments %} -->
+  <p class="text-muted">
+    {{ post.comments.count}} comments
+  </p>
+  <!-- {% endwith %} -->
 </article>
 {%endfor%} {% endblock content %}

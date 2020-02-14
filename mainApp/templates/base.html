@@ -39,44 +39,28 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url  'mainApp:mainpage' %}">SimlpeBlog</a>
-      <button
-        class="navbar-toggler navbar-toggler-right"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navb"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navb">
-        <ul class="navbar-nav mr-auto">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light" style="background-color: #3fe09d;" >
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url  'mainApp:mainpage' %}">SimlpeBlog</a>
+            </div>
+              <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url  'mainApp:aboutpage' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+          </div> 
+        </nav>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url  'mainApp:aboutpage' %}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="text"
-            placeholder="Search"
-          />
-          <button class="btn  my-2 my-sm-0" type="button">
-            Search
-          </button>
-        </form>
-      </div>
-    </nav>
     <main role="main" class="container">
           <div class="row">
             <div class="container content">
               <div class="row profile">
                 <div class="col-md-3">
-                  <div class="profile-sidebar position-fixed">
+                  <div class="profile-sidebar fixed" id="sticky-sidebar" >
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
                       <img src="https://media.rockstargames.com/chinatownwars/global/downloads/avatars/zhou_256x256.jpg" class="img-responsive" alt="">
@@ -103,23 +87,23 @@
                       <ul class="nav flex-column">
                         <li class="active nav-item">
                           <a href="#" class="nav-link active">
-                        <i class="fa fa-home"></i>
-                        Overview </a>
+                            <i class="fa fa-home"></i>
+                          Overview </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="https://codepen.io/jasondavis/pen/jVRwaG?editors=1000">
-                        <i class="fa fa-user"></i>
-                        Account Settings </a>
+                          <i class="fa fa-user"></i>
+                          Account Settings </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#" target="_blank">
-                        <i class="fa fa-check"></i>
-                        Tasks </a>
+                          <i class="fa fa-check"></i>
+                          Tasks </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">
-                        <i class="fa fa-flag"></i>
-                        Help </a>
+                          <i class="fa fa-flag"></i>
+                          Help </a>
                         </li>
                       </ul>
                     </div>
