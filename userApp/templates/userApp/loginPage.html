@@ -3,13 +3,13 @@
   <form class="profile" method="POST">
     {% csrf_token %} {{form |crispy}}
     <div class="form-group">
-      <button class="btn btn-online-info" type="submit">SingUp</button>
+      <button class="btn btn-online-info" type="submit">SingIn</button>
     </div>
   </form>
   <div class="border-top pt-3">
     <small class="text-muted">
-      Already Have An Account
-      <a class="ml-2" href="{% url 'userApp:userLoginPage' %}">SignIn</a>
+      Need An Account ?
+      <a class="ml-2" href="{% url 'userApp:userRegisterPage'%}">SingUp</a>
     </small>
   </div>
 </div>

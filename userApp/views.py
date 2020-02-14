@@ -16,3 +16,7 @@ def user_register_page(request):
     else:
         form = UserRegisterForm()
     return render(request, 'userApp/userRegisterPage.html', {"form": form})
+
+
+def profile_page(requesr):
+    pass

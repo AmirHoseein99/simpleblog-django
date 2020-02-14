@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import CommentForm
 from django.contrib import messages
 # Create your views here.
 
 
+@login_required
 def main_page(request):
     context = {
         'posts': Post.objects.all()
