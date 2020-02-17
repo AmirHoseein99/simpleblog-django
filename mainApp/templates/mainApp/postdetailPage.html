@@ -8,6 +8,17 @@
     </div>
     <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
     <p class="article-content">{{ post.content }}</p>
+    <hr />
+    <a
+      class="btn btn-primary"
+      href="{% url  'mainApp:updatePostPage' post.slug  %}"
+      >Update</a
+    >
+    <a
+      class="btn btn-danger"
+      href="{% url  'mainApp:deletePostPage' post.slug  %}"
+      >Delete</a
+    >
   </div>
 </article>
 {% with comments.count as total_comments %}

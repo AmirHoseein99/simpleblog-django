@@ -1,7 +1,26 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {%block userinfo%}
+
+<div class="profile-sidebar" id="sticky-sidebar">
+  <div class="content-section profile">
+    <img
+      class="rounded-circle account-img"
+      src="{{user.profile.profile_pic.url}}"
+    />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+</div>
+
+{%endblock userinfo%} {% block content %}
 <hr />
 {% for post in posts %}
 <article class="media content-section ">
+  <img
+    class="rounded-circle article-img"
+    src="{{ post.author.profile.profile_pic.url }}"
+  />
   <div class="media-body">
     <div class="article-metadata">
       <a class="article-author" href="#">{{ post.author }}</a>
