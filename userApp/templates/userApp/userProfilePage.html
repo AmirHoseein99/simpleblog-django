@@ -14,8 +14,19 @@
             <p class="article-content">
               {{ user.profile.Bio }}
             </p>
-          </div>
-        </p>
+          </p>
+        </div>
+        <hr />
+        <a
+          class="btn btn-primary"
+          href="{% url  'userApp:updateProfilePage'%}"
+          >UpdateProfile
+      </a>
+      <a
+      class="btn btn-danger"
+      href=#
+      >DeleteAccount
+    </a>
 
       </div>
     </div>

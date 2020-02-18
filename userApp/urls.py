@@ -12,6 +12,8 @@ urlpatterns = [
     path('logout/', auth_view.LogoutView.as_view(template_name='userApp/logoutPage.html'),
          name='userLogoutPage'),
     path('profile/', views.profile_page, name='userProfilePage'),
+    path('updateprofile/', views.update_profile_page, name='updateProfilePage'),
+    #     path('deleteprofile/', views.profile_page, name='userProfilePage'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

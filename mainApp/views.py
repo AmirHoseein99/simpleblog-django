@@ -20,7 +20,6 @@ def about_page(request):
 
 @login_required
 def create_post_page(request):
-
     new_post = None
     if request.method == 'POST':
         post_form = PostForm(data=request.POST)
@@ -88,7 +87,6 @@ def post_detail_page(request, post):
 def delete_post_page(request, post):
     old_post = get_object_or_404(Post, slug=post)
     if request.user == old_post.author:
-
         old_post.delete()
         messages.success(request, 'Post Deleted successfuly')
         return redirect("mainApp:mainpage")
