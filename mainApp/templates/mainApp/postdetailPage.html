@@ -7,11 +7,16 @@
       src="{{post.author.profile.profile_pic.url}}"
     />
     <div class="article-metadata">
-      <a class="article-author" href="#">{{ post.author }}</a>
+      <a
+        class="article-author"
+        href="{%url 'userApp:userProfilePage' post.author.id%}"
+        >{{ post.author }}</a
+      >
       <small class="text-muted">{{ post.date_of_creation|timesince }}</small>
     </div>
-    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+    <h2><p class="article-title">{{ post.title }}</p></h2>
     <p class="article-content">{{ post.content }}</p>
+    {% if user.id == post.author.id%}
     <hr />
     <a
       class="btn btn-primary"
@@ -23,6 +28,7 @@
       href="{% url  'mainApp:deletePostPage' post.slug  %}"
       >Delete</a
     >
+    {%endif%}
   </div>
 </article>
 {% with comments.count as total_comments %}

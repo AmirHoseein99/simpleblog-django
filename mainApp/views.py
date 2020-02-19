@@ -40,21 +40,17 @@ def create_post_page(request):
 def update_post_page(request, post):
     old_post = get_object_or_404(Post, slug=post)
     updated_post = None
-    if request.user == old_post.author:
-        if request.method == 'POST':
-            update_post_form = UpdatePostForm(data=request.POST)
-            if update_post_form.is_valid:
-                updated_post = update_post_form.save(commit=False)
-                old_post.title = updated_post.title
-                old_post.content = updated_post.content
-                old_post.save()
-                messages.success(request, 'Post Updated successfuly')
-                return redirect("mainApp:mainpage")
-        else:
-            update_post_form = UpdatePostForm()
+    if request.method == 'POST':
+        update_post_form = UpdatePostForm(data=request.POST)
+        if update_post_form.is_valid:
+            updated_post = update_post_form.save(commit=False)
+            old_post.title = updated_post.title
+            old_post.content = updated_post.content
+            old_post.save()
+            messages.success(request, 'Post Updated successfuly')
+            return redirect("mainApp:mainpage")
     else:
-        messages.error(request, 'You cannot update this Post ')
-        return redirect("mainApp:mainpage")
+        update_post_form = UpdatePostForm()
 
     context = {'old_post': old_post, 'updated_post': updated_post,
                'update_post_form': update_post_form}
@@ -78,7 +74,7 @@ def post_detail_page(request, post):
     else:
         comment_form = CommentForm()
     context = {'post': post, 'comments': comments,
-               'new_comment': new_comment, 'comment_form': comment_form}
+               'new_comment': new_comment, 'comment_form': comment_form, "user": request.user}
 
     return render(request, 'mainApp/postdetailPage.html', context)
 
@@ -86,14 +82,12 @@ def post_detail_page(request, post):
 @login_required
 def delete_post_page(request, post):
     old_post = get_object_or_404(Post, slug=post)
-    if request.user == old_post.author:
+    # context = {'old_post': old_post}
+    if request.method == 'POST':
         old_post.delete()
         messages.success(request, 'Post Deleted successfuly')
         return redirect("mainApp:mainpage")
     else:
-        messages.error(request, 'You cannot delete this Post ')
-        return redirect("mainApp:mainpage")
+        return render(request, 'mainApp/postDeletePage.html')
 
-    context = {'old_post': old_post}
-
-    return render(request, 'mainApp/postUpdatePage.html', context)
+    return render(request, 'mainApp/postDeletePage.html')
