@@ -9,6 +9,7 @@
     <div class="media-body">
       <h2 class="account-heading">{{ user.username }}</h2>
       <p class="text-secondary">{{ user.email }}</p>
+      <p class="text-secondary">{{ user.profile.Bio }}</p>
     </div>
   </div>
 </div>
@@ -23,7 +24,11 @@
   />
   <div class="media-body">
     <div class="article-metadata">
-      <a class="article-author" href="#">{{ post.author }}</a>
+      <a
+        class="article-author"
+        href="{%url 'userApp:userProfilePage' post.author.id%}"
+        >{{ post.author }}</a
+      >
     </div>
     <h3>
       <a class="article-title" href="{{ post.get_absolute_url }}"

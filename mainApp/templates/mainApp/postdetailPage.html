@@ -2,6 +2,10 @@
 <hr />
 <article class="media content-section">
   <div class="media-body">
+    <img
+      class="rounded-circle account-img"
+      src="{{post.author.profile.profile_pic.url}}"
+    />
     <div class="article-metadata">
       <a class="article-author" href="#">{{ post.author }}</a>
       <small class="text-muted">{{ post.date_of_creation|timesince }}</small>
@@ -27,6 +31,10 @@
 </p>
 {% endwith %} {% for comment in comments %}
 <article class="media content-section">
+  <img
+    class="rounded-circle account-img"
+    src="{{commet.post.author.profile.profile_pic.url}}"
+  />
   <div class="media-body">
     <p class="article-author">
       {{ comment.name }}

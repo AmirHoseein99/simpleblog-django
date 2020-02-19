@@ -16,18 +16,24 @@
             </p>
           </p>
         </div>
+        {%if u.id == user.id %}
         <hr />
         <a
-          class="btn btn-primary"
-          href="{% url  'userApp:updateProfilePage'%}"
-          >UpdateProfile
+        class="btn btn-primary"
+        href="{% url  'userApp:updateProfilePage'%}"
+        >UpdateProfile
       </a>
       <a
+        class="btn btn-secondary"
+        href="{% url  'userApp:changePasswordPage'%}"
+        >ChangePassword
+    </a>
+      <a 
       class="btn btn-danger"
-      href=#
+      href="{% url 'userApp:deleteProfilePage' user.username %}"
       >DeleteAccount
     </a>
-
+        {%endif%}
       </div>
     </div>
   </div>
