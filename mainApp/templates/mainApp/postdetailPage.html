@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block content %}
+<hr />
+<article class="media content-section">
+  <div class="media-body">
+    <img
+      class="rounded-circle account-img"
+      src="{{post.author.profile.profile_pic.url}}"
+    />
+    <div class="article-metadata">
+      <a
+        class="article-author"
+        href="{%url 'userApp:userProfilePage' post.author.id%}"
+        >{{ post.author }}</a
+      >
+      <small class="text-muted">{{ post.date_of_creation|timesince }}</small>
+    </div>
+    <h2><p class="article-title">{{ post.title }}</p></h2>
+    <p class="article-content">{{ post.content }}</p>
+    {% if user.id == post.author.id%}
+    <hr />
+    <a
+      class="btn btn-primary"
+      href="{% url  'mainApp:updatePostPage' post.slug  %}"
+      >Update</a
+    >
+    <a
+      class="btn btn-danger"
+      href="{% url  'mainApp:deletePostPage' post.slug  %}"
+      >Delete</a
+    >
+    {%endif%}
+  </div>
+</article>
+{% with comments.count as total_comments %}
+<p class="text-muted">
+  {{ total_comments }} comment{{ total_comments|pluralize }}
+</p>
+{% endwith %} {% for comment in comments %}
+<article class="media content-section">
+  <img
+    class="rounded-circle account-img"
+    src="{{commet.post.author.profile.profile_pic.url}}"
+  />
+  <div class="media-body">
+    <p class="article-author">
+      {{ comment.name }}
+    </p>
+    <hr />
+    <p class="article-content">{{ comment.body }}</p>
+    <hr />
+    <p class="text-muted">
+      {{ comment.created | timesince}}
+    </p>
+  </div>
+</article>
+{% empty %}
+<article class="media content-section">
+  <div class="media-body">
+    <p class="article-content">There are no comments yet.</p>
+  </div>
+</article>
+{% endfor %} {% if new_comment %}
+<div class="alert alert-success">
+  <p>Your comment has been added.</p>
+  {% else %}
+  <article class="media content-section">
+    <div class="media-body">
+      <p>Add a new comment</p>
+      <form action="." method="post">
+        {{ comment_form.as_p }} {% csrf_token %}
+        <button type="submit" value="Add Comment" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </article>
+  {% endif %} {% endblock content %}
+</div>

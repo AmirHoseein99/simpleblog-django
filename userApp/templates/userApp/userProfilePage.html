@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="content-section profile">
+  <div class="media">
+    <img
+      class="rounded-circle account-img"
+      src="{{user.profile.profile_pic.url}}"
+    />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+      <div>
+        <div class=" profile">
+          <p  class="article-title ">bio:
+            <p class="article-content">
+              {{ user.profile.Bio }}
+            </p>
+          </p>
+        </div>
+        {%if u.id == user.id %}
+        <hr />
+        <a
+        class="btn btn-primary"
+        href="{% url  'userApp:updateProfilePage'%}"
+        >UpdateProfile
+      </a>
+      <a
+        class="btn btn-secondary"
+        href="{% url  'userApp:changePasswordPage'%}"
+        >ChangePassword
+    </a>
+      <a 
+      class="btn btn-danger"
+      href="{% url 'userApp:deleteProfilePage' user.username %}"
+      >DeleteAccount
+    </a>
+        {%endif%}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

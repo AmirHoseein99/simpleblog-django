@@ -5,7 +5,11 @@ import sys
 
 
 def main():
+<<<<<<< HEAD
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'socialnet.settings')
+=======
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'simpleblog.settings')
+>>>>>>> e3caedbdda5f03bc8c55b0dca14b097965ad3bfa
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

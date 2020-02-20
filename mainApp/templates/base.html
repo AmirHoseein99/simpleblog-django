@@ -1,0 +1,126 @@
+{% load static %} 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'mainApp/article.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'mainApp/profileSidebar.css' %}"
+    />
+
+    {%if title %}
+    <title>{{title}}</title>
+    {%else%}
+    <title>MainPage</title>
+    {%endif%}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark " style="background-color: #010d2b;" >
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url  'mainApp:mainpage' %}">SimlpeBlog</a>
+            </div>
+              <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url  'mainApp:aboutpage' %}">About</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav">
+                {% if user.is_authenticated%}
+                <li class ='nav-item'>
+                  <div class="nav-item">
+                    <a class="nav-link" href="{% url  'mainApp:createPostPage' %}">NewPost</a>
+                  </div>
+                </li>
+                <li class ='nav-item'>
+                  <div class="nav-item">
+                    <a class="nav-link" href="{% url  'userApp:userProfilePage' user.id %}">Profile</a>
+                  </div>
+                </li>
+                <li class ='nav-item'>
+                  <div class="nav-item">
+                    <a class="nav-link" href="{% url  'userApp:userLogoutPage' %}">Logout</a>
+                  </div>
+                </li>
+                {%else%}
+                <li class ='nav-item'>
+                  <div class="nav-item">
+                    <a class="nav-link" href="{% url  'userApp:userRegisterPage' %}">Register</a>
+                  </div>
+                </li>
+                <li class ='nav-item'>
+                  <div class="nav-item">
+                    <a class="nav-link" href="{% url  'userApp:userLoginPage' %}">Login</a>
+                  </div>
+                </li>
+                {% endif%}
+              </ul>
+          </div> 
+        </nav>
+
+    <main role="main" class="container">
+          <div class="row">
+            {% if user.is_authenticated%}
+              <div class="container content">
+                <div class="row profile">
+                  <div class="col-md-3">
+                    <div class="profile-sidebar" id="sticky-sidebar" >
+                      {% block userinfo%}
+                      {%endblock%}
+                    </div>
+                  </div>
+                {%else%}
+                <div class="container content">
+                  <div class="row profile">
+                    <div class="col-md-3">
+                    </div>
+                  </div>
+                </div>
+                {%endif%}
+            <div class="col-md-8">
+              {% for message in messages %}
+                {% if message.tags == "error"%}
+                <div class="alert alert-danger profile">
+                  {{message}}
+                </div>
+                {%else%}
+                <div class="alert alert-{{ message.tags }} profile ">
+                  {{message}}
+                </div>
+                {%endif%}
+              {%endfor%}
+              
+              {% block content %}{% endblock %}
+            </div>
+      </div>
+    </div>    
+
+      <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+</html>

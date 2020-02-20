@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+<article class="media content-section profile">
+  <div class="media-body">
+    <p>Update the old post</p>
+    <form action="." method="post">
+      {{ update_post_form.as_p }} {% csrf_token %}
+      <button type="submit" value="Add Post" class="btn btn-primary">
+        Update
+      </button>
+    </form>
+  </div>
+</article>
+{% endblock content%}
